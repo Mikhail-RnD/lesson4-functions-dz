@@ -33,21 +33,33 @@
 
 Для реализации основного меню можно использовать пример ниже или написать свой
 """
+account_balance = 0
+purchase_history = []
+
+def purchase(balance):
+    purchase = int(input('Введите сумму покупки: '))
+    if purchase < balance:
+        purchase_history.append((input('Введите название покупки: '), purchase))
+        balance -= purchase
+    return balance
 
 while True:
     print('1. пополнение счета')
     print('2. покупка')
     print('3. история покупок')
-    print('4. выход')
+    print('4. баланс счета')
+    print('5. выход')
 
-    choice = input('Выберите пункт меню')
+    choice = input('Выберите пункт меню: ')
     if choice == '1':
-        pass
+        account_balance += int(input('Введите сумму для пополнения: '))
     elif choice == '2':
-        pass
+        account_balance = purchase(account_balance)
     elif choice == '3':
-        pass
+        print(purchase_history)
     elif choice == '4':
+        print(f'Баланс счета = {account_balance}')
+    elif choice == '5':
         break
     else:
         print('Неверный пункт меню')
